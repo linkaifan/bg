@@ -3,85 +3,67 @@
 <head>
 	<meta charset="UTF-8">
 	<title>BG</title>
-	<style>
-		.contain{
-			position: relative;
-			height: 900px;
-			width: 100%;
-		}
-		.contain img:nth-of-type(even){
-			width: 100px;
-			height: 100px;
-		}
-		.contain img:nth-of-type(odd){
-			width: 50px;
-			height: 50px;			
-		}
-		.bg{
-			position: absolute;
-		}
-		.bg1{
-			left: 60px;
-			top: 10px;
-		}
-		.bg2{
-			right: 200px;
-			top: 5px;
-		}
-		.bg3{
-			right: 100px;
-			top: 500px;
-		}
-		.bg4{
-			right: 0px;
-			top: 200px;
-		}
-		.bg5{
-			left: 100px;
-			top: 600px;
-		}
-		.bg6{
-			left: 20px;
-			top: 650px;
-		}
-		.bg7{
-			left: 400px;
-			top: 800px;
-		}
-	</style>
+<!-- 	<style>
+	.bg-contain{
+		position: relative;
+		height: 900px;
+		width: 100%;
+	}
+	.bg-contain img:nth-of-type(even){
+		width: 100px;
+		height: 100px;
+	}
+	.bg-contain img:nth-of-type(odd){
+		width: 50px;
+		height: 50px;			
+	}
+	.bg{
+		position: absolute;
+	}
+	.bg1{
+		left: 60px;
+		top: 10px;
+	}
+	.bg2{
+		right: 200px;
+		top: 5px;
+	}
+	.bg3{
+		right: 100px;
+		top: 500px;
+	}
+	.bg4{
+		right: 0px;
+		top: 200px;
+	}
+	.bg5{
+		left: 100px;
+		top: 600px;
+	}
+	.bg6{
+		left: 20px;
+		top: 650px;
+	}
+	.bg7{
+		left: 400px;
+		top: 800px;
+	}
+</style> -->
 </head>
 <body>
-	<div class="contain">
-		<img src="img/bg1.png" alt="" class="bg bg1">
+	<div class="bg-contain">
+		<!-- <img src="img/bg1.png" alt="" class="bg bg1">
 		<img src="img/bg2.png" alt="" class="bg bg2">
 		<img src="img/bg3.png" alt="" class="bg bg3">
 		<img src="img/bg4.png" alt="" class="bg bg4">
 		<img src="img/bg5.png" alt="" class="bg bg5">
 		<img src="img/bg6.png" alt="" class="bg bg6">
-		<img src="img/bg7.png" alt="" class="bg bg7">
+		<img src="img/bg7.png" alt="" class="bg bg7"> -->
 	</div>
 
 
+	<script type="text/javascript" src='JQ1.9.1.js'></script>
+	<script type="text/javascript" src='bg.js'></script>
 
-	<script type="text/javascript">
-	/*var img0 = document.getElementsByClassName('bg')[0];
-	img0.style.top+= 100 +'px';*/
-	(function(){
-		var Bn = 0,
-			img0 = document.getElementsByClassName('bg')[0];
-		window.addEventListener("deviceorientation", function(event) {
-			if (event.beta > 60) {
-				Bn++;
-				img0.style.top = Bn*10 +'px';
-				alert(img0.style.top); 
-			}
-			if (event.beta > -60) {
-				Bn++;
-				img0.style.top = img0.style.top - Bn*10   +'px';
-			}
-		 }, true);
-	})();
-	
-	</script>
 </body>
 </html>
