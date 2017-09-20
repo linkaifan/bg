@@ -1,5 +1,17 @@
 $(function(){  
     var Fbg = (function(){
+    	//判断是pc还是移动端
+    	function IsPC(){    
+    	     var userAgentInfo = navigator.userAgent;  
+    	     var Agents = new Array("Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod");    
+    	     var flag = true;    
+    	     for (var v = 0; v < Agents.length; v++) {    
+    	         if (userAgentInfo.indexOf(Agents[v]) > 0) { flag = false; break; }    
+    	     }    
+    	     return flag;    
+    	  }  
+    	var isPC = IsPC();
+
     	//创建一个Bg的类
     	var Bg = function(el,options){
     		this.$el = $(el);
@@ -77,17 +89,36 @@ $(function(){
     			document.getElementsByTagName('head')[0].appendChild(StyleNode);
     	};
     	Bg.prototype.bindEvent = function(){
-    		var self = this,
-    			$BgImg = self.$el.find('img');
-    		window.addEventListener("deviceorientation", function(event) {
-    					if (event.beta > 60) {
-    						$BgImg.eq(0).animate({top:'250px'});
-    					}
-    					if (event.beta < -60) {
-    						$BgImg.eq(0).animate({top:'100px'});
-
-    					}
-    				 }, true);
+    		if (!isPC) {
+	    		var self = this,
+	    			$BgImg = self.$el.find('img'),
+	    			speed = 30,
+	    			x=0,y=0,z=0,
+	    			lastX=0,lastY=0,lastZ=0;
+	    		window.addEventListener("devicemotion", function(event) {
+						var acceleration =event.accelerationIncludingGravity;
+		                x = acceleration.x;
+		                y = acceleration.y;
+		                z = acceleration.z;
+		                if ( (x-lastX) > 3) {
+		                	$('.roate').find('span').eq(3).html('1');
+		                	$BgImg.eq(0).stop(true);
+		                	$BgImg.eq(0).animate({left:'+=50px'});
+		                }
+		                if ( (x-lastX) < -3) {
+		                	$('.roate').find('span').eq(3).html('2');
+		                	$BgImg.eq(0).stop(true);
+		                	$BgImg.eq(0).animate({left:'-=50px'});
+		                }
+		                lastX = x;
+		                lastY = y;
+		                lastZ = z;
+					
+					$('.roate').find('span').eq(0).html(acceleration.x);
+					$('.roate').find('span').eq(1).html(acceleration.y);
+					$('.roate').find('span').eq(2).html(acceleration.z);
+	    		}, false);	
+    		}
     	};
     	Bg.prototype.unbind = function(){
     		//this.$el.off();
@@ -124,4 +155,5 @@ $(function(){
 
     })();
     $('.bg-contain').bg({});
+    
 });  
