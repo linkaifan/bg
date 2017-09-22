@@ -12,6 +12,54 @@ $(function(){
     	  }  
     	var isPC = IsPC();
 
+
+
+		//jq对象运动框架
+    	function startMove($obj, json, fnEnd)                
+    	{
+    		clearInterval($obj.timer);
+    		$obj.timer=setInterval(function (){
+    			var bStop=true;		//假设：所有值都已经到了
+    			
+    			for(var attr in json)
+    			{
+    				var cur=0;
+    				
+    				if(attr=='opacity')
+    				{
+    					cur=Math.round(parseFloat($obj.css(attr))*100);
+    				}
+    				else
+    				{
+    					cur=parseInt($obj.css(attr));
+    				}
+    				
+    				var speed=(json[attr]-cur)/50;
+    				speed=speed>0?Math.ceil(speed):Math.floor(speed);
+    				
+    				if(cur!=json[attr])
+    					bStop=false;
+    				
+    				if(attr=='opacity')
+    				{
+    					$obj.css('opacity',(cur+(speed))/100);
+
+    				}
+    				else
+    				{
+    					$obj.css(attr,cur+speed+'px');
+    				}
+    			}
+    			
+    			if(bStop)
+    			{
+    				clearInterval($obj.timer);
+    							
+    				if(fnEnd)fnEnd();
+    			}
+    		}, 50);
+    	}
+
     	//创建一个Bg的类
     	var Bg = function(el,options){
     		this.$el = $(el);
@@ -89,35 +137,45 @@ $(function(){
     			document.getElementsByTagName('head')[0].appendChild(StyleNode);
     	};
     	Bg.prototype.bindEvent = function(){
-    		if (!isPC) {
+    		if (true) {
+    			
 	    		var self = this,
-	    			$BgImg = self.$el.find('img'),
-	    			speed = 30,
-	    			x=0,y=0,z=0,
-	    			lastX=0,lastY=0,lastZ=0;
-	    		window.addEventListener("devicemotion", function(event) {
-						var acceleration =event.accelerationIncludingGravity;
-		                x = acceleration.x;
-		                y = acceleration.y;
-		                z = acceleration.z;
-		                if ( (x-lastX) > 3) {
-		                	$('.roate').find('span').eq(3).html('1');
-		                	$BgImg.eq(0).stop(true);
-		                	$BgImg.eq(0).animate({left:'+=50px'});
-		                }
-		                if ( (x-lastX) < -3) {
-		                	$('.roate').find('span').eq(3).html('2');
-		                	$BgImg.eq(0).stop(true);
-		                	$BgImg.eq(0).animate({left:'-=50px'});
-		                }
-		                lastX = x;
-		                lastY = y;
-		                lastZ = z;
-					
-					$('.roate').find('span').eq(0).html(acceleration.x);
-					$('.roate').find('span').eq(1).html(acceleration.y);
-					$('.roate').find('span').eq(2).html(acceleration.z);
-	    		}, false);	
+	    			control = 3;
+	    		window.addEventListener("deviceorientation", function(event) {
+	    			var gamma = event.gamma,
+	    				beta = event.beta;
+					$('.roate').find('span').eq(2).html(gamma);
+					$('.roate').find('span').eq(1).html(beta);
+
+					if ( gamma > control) {
+
+						$('.roate').find('span').eq(3).html('向右');
+
+					}
+					if ( gamma < -control) {
+
+
+						$('.roate').find('span').eq(3).html('向左');
+						
+					}
+
+					//判断设备向上还是向下
+					if ( beta > control) {
+											
+						startMove(self.$el.find('img:even'),{top:200});
+						startMove(self.$el.find('img:odd'),{top:600});
+						$('.roate').find('span').eq(0).html('向下');
+
+						
+					}
+					if ( beta < -control) {
+						startMove(self.$el.find('img:odd'),{top:800});
+						startMove(self.$el.find('img:even'),{top:20});
+						$('.roate').find('span').eq(0).html('向上');
+						
+					}
+	    		}, false);
+	    		
     		}
     	};
     	Bg.prototype.unbind = function(){
@@ -128,7 +186,7 @@ $(function(){
     		var $el = $(el),	
     			bg = $el.data('bg');
     		if (!bg) {							//单例模式
-    			bg = new Bg(el,typeof options === 'object' && options);
+    			bg = new Bg(el,typeof options === '$object' && options);
     			$el.data('bg',bg);
     			bg.init();
     		}
