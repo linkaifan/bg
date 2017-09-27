@@ -1,0 +1,146 @@
+ <!-- /*
+ * @Author: Zhang.Wei 
+ * @Date: 2017-07-25 14:59:09 
+ * @Last Modified by: Zhang.Wei
+ * @Last Modified time: 2017-07-25 23:54:08
+ */  -->
+
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+<title>联系页面</title>
+<script src="./js/jq.min.js"></script> 
+<script src="./js/flexible.debug.js"></script>
+<script src="./js/touch/clipboard.min.js"></script> 
+<link href="./css/index.css" rel="stylesheet">
+<link href="./css/touch.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="./css/bg.css">
+</head>
+
+<body>
+    <!--LOGO和HOME  -->
+    <img class="LOGO" src="./img/LOGO.png" alt="vtmer">
+    <a href="./index.html" class="BTN-HOME"><img src="./img/BTN-HOME.png" alt="hmoe"/></a>
+
+    <div id="bgContent">
+            <div id="haxagons"></div>
+    </div>
+
+    <div id="personList">
+ 
+    </div>
+
+    <div class="returnBut">
+        <a href="./index.html">回到首页</a>
+    </div>
+
+    <div class="BgContain">
+        <ul class="scene" id="S1" data-scalar-x="38" data-scalar-y="38">
+            <li class="layer" data-depth="0.60" id='bg1'><img src="img/bg1.png"></li>
+        </ul>
+        <ul class="scene" id="S2" data-scalar-x="38" data-scalar-y="38">
+            <li class="layer" data-depth="0.60" id='bg2'><img src="img/bg2.png"></li>
+        </ul>
+        <ul class="scene" id="S3" data-scalar-x="38" data-scalar-y="38">
+            <li class="layer" data-depth="0.40" id='bg3'><img src="img/bg3.png"></li>
+        </ul>
+        <ul class="scene" id="S4" data-scalar-x="38" data-scalar-y="38">
+            <li class="layer" data-depth="0.60" id='bg4'><img src="img/bg4.png"></li>
+        </ul>
+        <ul class="scene" id="S5" data-scalar-x="38" data-scalar-y="38">
+            <li class="layer" data-depth="0.80" id='bg5'><img src="img/bg5.png"></li>
+        </ul>
+        <ul class="scene" id="S6" data-scalar-x="38" data-scalar-y="38">
+            <li class="layer" data-depth="1.00" id='bg6'><img src="img/bg6.png"></li>
+        </ul>
+        <ul class="scene" id="S7" data-scalar-x="28" data-scalar-y="28">
+             <li class="layer" data-depth="1.00" id='bg7'><img src="img/bg7.png"></li>
+        </ul>
+        <ul class="scene" id="S8" data-scalar-x="28" data-scalar-y="28">
+            <li class="layer" data-depth="0.60" id='bg4'><img src="img/bg4.png"></li>
+        </ul>
+        <ul class="scene" id="S9" data-scalar-x="28" data-scalar-y="28">
+            <li class="layer" data-depth="0.80" id='bg5'><img src="img/bg5.png"></li>
+        </ul>
+        <ul class="scene" id="S10" data-scalar-x="28" data-scalar-y="28">
+            <li class="layer" data-depth="1.00" id='bg6'><img src="img/bg1.png"></li>
+        </ul>
+    </div>  
+    
+
+
+    <script type="text/javascript" src="./js/handlebars-v2.0.0.js"></script>
+    <script src="./js/touch/touch.js"></script>
+    <script id="table-template" type="text/x-handlebars-template">
+
+        {{#each this}}
+            <div class="person Mr1" id="person">
+                    <!--头像和名字  -->
+                    <div class="personItr">
+                        <img src="{{pic}}" alt="Lizhihang">
+                        <div class="name">
+                            <span class='chinesename'>{{name}}</span>
+                            <span class='englishname'>{{EngName}}</span>
+                        </div>
+                    </div>
+
+                    <!--联系方式  -->
+                    <div class="touchwayBox">
+                        <div class="touch phone">
+                            <img src="./img/touch/phoneIcon.png" alt="phone">
+                            <span class="phone number">{{tel}}</span>
+                            <div class="call">
+                                <a href='tel:{{tel}}'>拨号</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="touchwayBox">
+                        <div class="touch wechat">
+                            <img src="./img/touch/wechatIcon.png" alt="wechat">
+                            <span class="wechat number" id="wechat{{EngName}}">{{wechat}}</span>
+                            <div class="copy" data-clipboard-target="#wechat{{EngName}}" id="wechatCopyHang">
+                                复制
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="touchwayBox">
+                        <div class="touch email">
+                            <img src="./img/touch/emailIcon.png" alt="email">
+                            <span class="email number" id="email{{EngName}}">{{email}}</span>
+                            <div class="copy" data-clipboard-target="#email{{EngName}}" id="emailCopyHang">
+                                复制
+                            </div>
+                        </div>
+                    </div>
+            </div> 
+            {{/each}}
+    </script>
+    <script src='./js/jquery.parallax.min.js'></script>
+    <script>
+    /** * 禁止浏览器下拉回弹 */
+    (function stopDrop() {
+        var lastY;
+        //最后一次y坐标点 
+        $(document.body).on('touchstart', function (event) {
+            lastY = event.originalEvent.changedTouches[0].clientY;
+            //点击屏幕时记录最后一次Y度坐标。 
+        });
+        $(document.body).on('touchmove', function (event) {
+            var y = event.originalEvent.changedTouches[0].clientY;
+            var st = $(this).scrollTop();
+            //滚动条高度 
+            if (y >= lastY && st <= 10) {
+                //如果滚动条高度小于0，可以理解为到顶了，且是下拉情况下，阻止touchmove事件。 
+                lastY = y; event.preventDefault();
+            } lastY = y;
+        });
+        $('.scene').parallax(); 
+    })()
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,84 @@
+ <!-- /*
+ * @Author: Zhang.Wei 
+ * @Date: 2017-07-25 09:32:27 
+ * @Last Modified by:   Zhang.Wei 
+ * @Last Modified time: 2017-07-25 09:32:27 
+ */  -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+<title>作品页</title>    
+<script src="./js/jq.min.js"></script>
+<script src="./js/worker/jquery.touchSwipe.min.js"></script>
+<script src="./js/worker/hammer.min.js"></script>
+<script src="./js/worker/jquery.form.js"></script>
+<script src="./js/flexible.debug.js"></script>
+<link href="./css/index.css" rel="stylesheet">
+<link href="./css/worker.css" rel="stylesheet"> 
+<link rel="stylesheet" type="text/css" href="./css/bg.css">
+
+</head>
+
+<body>
+    <a id="backFirst" class="icon icon-home"></a>
+    <div id="container" >
+        <div id="main" >
+        </div>
+    </div>
+    <div id="right">
+        <div id="text0" class="text" style="top:0%;left:10%;z-index:1">
+           <div class="textTop"><p class="titleStyle"><p><hr style="color:rgb(55,142,255);" />
+           <p class="introStyle"></p>
+           </div>
+           <div class="textUnder">
+           <div id="jishu">技术难点</div>
+           <div class="contentStyle"></div>
+           </div>
+        </div>
+    </div>
+    <a id="linkBtn" class="button" href="./touch.html">联系我们</a>
+    
+    <div class="BgContain">
+        <ul class="scene" id="S1" data-scalar-x="38" data-scalar-y="38">
+            <li class="layer" data-depth="0.60" id='bg1'><img src="img/bg1.png"></li>
+        </ul>
+        <ul class="scene" id="S2" data-scalar-x="38" data-scalar-y="38">
+            <li class="layer" data-depth="0.60" id='bg2'><img src="img/bg2.png"></li>
+        </ul>
+        <ul class="scene" id="S3" data-scalar-x="38" data-scalar-y="38">
+            <li class="layer" data-depth="0.40" id='bg3'><img src="img/bg3.png"></li>
+        </ul>
+        <ul class="scene" id="S4" data-scalar-x="38" data-scalar-y="38">
+            <li class="layer" data-depth="0.60" id='bg4'><img src="img/bg4.png"></li>
+        </ul>
+        <ul class="scene" id="S5" data-scalar-x="38" data-scalar-y="38">
+            <li class="layer" data-depth="0.80" id='bg5'><img src="img/bg5.png"></li>
+        </ul>
+        <ul class="scene" id="S6" data-scalar-x="38" data-scalar-y="38">
+            <li class="layer" data-depth="1.00" id='bg6'><img src="img/bg6.png"></li>
+        </ul>
+        <ul class="scene" id="S7" data-scalar-x="28" data-scalar-y="28">
+             <li class="layer" data-depth="1.00" id='bg7'><img src="img/bg7.png"></li>
+        </ul>
+        <ul class="scene" id="S8" data-scalar-x="28" data-scalar-y="28">
+            <li class="layer" data-depth="0.60" id='bg4'><img src="img/bg4.png"></li>
+        </ul>
+        <ul class="scene" id="S9" data-scalar-x="28" data-scalar-y="28">
+            <li class="layer" data-depth="0.80" id='bg5'><img src="img/bg5.png"></li>
+        </ul>
+        <ul class="scene" id="S10" data-scalar-x="28" data-scalar-y="28">
+            <li class="layer" data-depth="1.00" id='bg6'><img src="img/bg1.png"></li>
+        </ul>
+    </div> 
+
+    <script src='./js/jquery.parallax.min.js'></script>
+    <script src="./js/worker/worker.js"></script>
+    <script type="text/javascript">
+      $('.scene').parallax(); 
+    </script>
+
+</body>
+</html>

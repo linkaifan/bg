@@ -1,0 +1,319 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+
+/**首页主体**/
+
+.homeContent {
+    position: absolute;
+    z-index: 9;
+    width: 100%;
+    height: 100%;
+}
+
+.LOGO {
+    margin-left: 0.5867rem;
+    margin-top: 0.4667rem;
+    width: 2.48rem;
+    height: 0.6rem;
+}
+
+.content-login {
+    width: 0.55rem;
+    height: 0.55rem;
+    background-position: center;
+    float: right;
+    margin-right: 0.466667rem;
+    margin-top: 0.4667rem;
+}
+
+.content-login img {
+    width: 0.55rem;
+    height: 0.55rem;
+}
+
+.content-center {
+    width: 2.9333rem;
+    margin: 0 auto;
+}
+
+.content-center img {
+    width: 2.213333rem;
+    height: 7.226667rem;
+    position: absolute;
+    left: 53%;
+    top: 50%;
+    margin-top: -3.613333rem;
+    margin-left: -1.106667rem;
+}
+
+.content-BTNlogin {
+    width: 2.9333rem;
+    height: 0.6667rem;
+    border: 0.0267rem solid rgb(56, 140, 255);
+    text-align: center;
+    border-radius: 1.0667rem;
+    position: absolute;
+    top: 13.3333rem;
+}
+
+.content-BTNlogin a {
+    font-size: 0.32rem;
+    line-height: 0.6667rem;
+    text-decoration: none;
+    color: rgb(155, 191, 255);
+    font-weight: 300;
+}
+
+
+/**弹出层**/
+
+
+/*遮罩层*/
+
+#mask {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    background: black;
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+}
+
+
+/*登录框*/
+
+
+/*弹出动画*/
+
+@-webkit-keyframes moveIn {
+    from {
+        opacity: 0;
+        -webkit-transform: scale3d(.3, .3, .3);
+        transform: scale3d(.3, .3, .3);
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes moveIn {
+    from {
+        opacity: 0;
+        -webkit-transform: scale3d(.3, .3, .3);
+        transform: scale3d(.3, .3, .3);
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.moveIn {
+    -webkit-animation-name: moveIn;
+    animation-name: moveIn;
+    animation-timing-function: ease;
+    -webkit-animation-timing-function: ease;
+    animation-duration: 0.3s;
+    -webkit-animation-duration: 0.3s;
+}
+
+#alertbox {
+    width: 8.066667rem;
+    height: 10.013333rem;
+    position: fixed;
+    z-index: 11;
+    left: 50%;
+    top: 45%;
+    margin-left: -4.02rem;
+    margin-top: -5.0rem;
+    background: rgb(255, 255, 255);
+    border-radius: 0.333333rem;
+}
+
+#alertClose {
+    width: 0.44rem;
+    height: 0.453333rem;
+    position: absolute;
+    right: 0.333333rem;
+    top: 0.333333rem;
+}
+
+#signIn {
+    font-size: 0.333333rem;
+    color: rgb(128, 178, 255);
+    position: absolute;
+    left: 0.4rem;
+    top: 0.333333rem;
+    text-decoration: none;
+}
+
+.alertboxContent {
+    width: 5.146667rem;
+    height: 7.0rem;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    margin: -3.413333rem 0 0 -2.573333rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.alertboxContent img:first-child {
+    width: 1.333333rem;
+    height: 1.533333rem;
+}
+
+.alertboxContent p {
+    font-size: 0.56rem;
+    color: rgb(140, 151, 165);
+}
+
+#Form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 3.666667rem;
+    justify-content: space-between;
+}
+
+#Form ul {
+    height: 1.44rem;
+}
+
+#Form ul li {
+    list-style: none;
+    margin-bottom: 0.133333rem;
+}
+
+#Msg {
+    color: rgb(254, 158, 162);
+    text-align: center;
+    display: none;
+}
+
+#useremail, #psw {
+    width: 100%;
+    height: 0.8rem;
+    font-size: 0.373333rem;
+    color: rgb(139, 139, 139);
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid rgba(205, 205, 205, 0.9);
+    outline: none;
+}
+
+#submitBTN {
+    width: 3.946667rem;
+    height: 0.96rem;
+    background-size: 100% 100%;
+    border-radius: 0.666667rem;
+    background: rgb(144, 188, 255);
+    color: white;
+    font-size: 0.373333rem;
+    border: 0;
+    outline: none;
+}
+
+input::-webkit-input-placeholder {
+    color: rgb(211, 211, 211);
+}
+
+input:-moz-placeholder {
+    color: rgb(211, 211, 211);
+}
+
+input::-moz-placeholder {
+    color: rgb(211, 211, 211);
+}
+
+input:-ms-input-placeholder {
+    color: rgb(211, 211, 211);
+}
+
+
+/*注册页面*/
+
+#signinBOX {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    background: rgba(232, 237, 240, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#signinBOX img{
+  position: absolute;
+  top:0.533333rem;
+  right: 0.533333rem;
+}
+
+#signinboxContent {
+    width: 8.666667rem;
+    height: 9rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#signinboxContent p {
+    font-size: 0.8rem;
+    color: rgb(96, 106, 105);
+}
+
+#signinboxContent form input {
+    width: 7rem;
+    height: 1.066667rem;
+    text-indent: 1em;
+    border-radius: 0.2rem;
+    border: 2px solid rgba(96, 106, 105, 0.5);
+    outline: none;
+}
+
+#signinBtn {
+    width: 3.946667rem;
+    height: 0.96rem;
+    background-size: 100% 100%;
+    border-radius: 0.666667rem;
+    background: rgb(144, 188, 255);
+    color: white;
+    font-size: 0.373333rem;
+    border: 0;
+    outline: none;
+}
+
+#signinboxContent form input[name="first"] {
+    margin: 0 0 0.4rem 0;
+}
+#signinboxContent form ul{
+  list-style: none;
+}
+.email, .password {
+    height: 1.6rem;
+    margin: 0.266667rem 0;
+}
+#PswMsg{
+  color: rgb(254, 158, 162);
+  display: none;
+}
+#EmailMsg{
+  color: rgb(254, 158, 162);
+  display: none;
+}
